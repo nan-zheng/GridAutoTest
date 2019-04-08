@@ -1,0 +1,24 @@
+apply plugin: 'idea'
+apply plugin: 'scala'
+
+repositories {
+    jcenter()
+
+    maven {
+        url "https://maven.springframework.org/release"
+    }
+    maven {
+        url "https://maven.restlet.com"
+    }
+}
+
+apply from: file("versions.gradle")
+
+dependencies {
+    compile "org.scala-lang:scala-library:${versions.scala_library}"
+
+    testCompile "junit:junit:${versions.junit}"
+}
+
+
+defaultTasks 'clean', 'build'
