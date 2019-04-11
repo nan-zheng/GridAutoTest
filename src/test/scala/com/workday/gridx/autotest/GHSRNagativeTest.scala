@@ -116,16 +116,14 @@ class GHSRNagativeTest extends FunSuite with Matchers {
 
 
   /**
-    * This is to test special charaters in the request and responses.
+    * Bad parameters being built with q
     */
   test("Bad Url should return error") {
     val request = GitHubHttpClient.getInstance.getString("https://api.github.com/search/repositories?p=234")
     request.contains("Validation Failed") should be(true)
   }
 
-  /**
-    * This is to test special charaters in the request and responses.
-    */
+
   /*test("Run too fast should fail without Auth 10 per min") {
     (0 to 11).foreach(_ => {
       val request = GitHubHttpClient.getInstance.getString("https://api.github.com/search/repositories?p=234")
