@@ -110,7 +110,7 @@ class GHSRNagativeTest extends FunSuite with Matchers {
 
     Option(GitHubHttpClient.getInstance.get[RepositorySearchResult](uri)) match {
       case Some(RepositorySearchResult(0, false, null)) => // expected
-      case None => fail("Unexpected successful")
+      case _ => fail("Unexpected successful")
     }
   }
 
