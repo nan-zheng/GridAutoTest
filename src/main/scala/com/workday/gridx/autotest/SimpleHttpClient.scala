@@ -29,7 +29,9 @@ class SimpleHttpClient {
 
     /**
       *    build basic header + optional header fields
-      *
+      *    e.g. "ACCEPT: application/vnd.github.mercy-preview+json"
+      *    List is used to allow mutilple value for the same header name
+      *    e.g. set-cookie
       */
     headers match {
       case Some(list) => list.foreach(t => request.addHeader(t._1, t._2))
@@ -39,13 +41,7 @@ class SimpleHttpClient {
     client
   }
 
-  /**
-    *
-    * @param endpoint string with end point details
-    * @param cred optional user credentials api-testaccount: testtest.1*
-    * @param headers optional field: "ACCEPT: application/vnd.github.mercy-preview+json"
-    * @return InputStream of ???
-    */
+
   def get(endpoint: String, cred: Option[Cred] = None, headers: Option[List[(String, String)]] = None): InputStream = {
     val uri = new URI(endpoint)
     val httpGet = new HttpGet(uri)

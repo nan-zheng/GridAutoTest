@@ -1,39 +1,16 @@
 package com.workday.gridx.autotest
 
-import java.lang
-
+import com.workday.gridx.autotest.TestUtil.isSorted
 import org.scalatest.{FunSuite, Matchers}
 
-import scala.util.control
 
 class GitHubAPITest extends FunSuite with Matchers {
 
   //curl https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
 
   val term_unicode = "955 不加班的公司名单"
-  val
+  val term_special = "%20"
 
-  /**
-    * This method is used to test the sorting of the result
-    * @param list
-    * @param ord
-    * @tparam T
-    * @return
-    */
-  def isSorted[T](list: List[T])(implicit ord: Ordering[T]): Boolean = list match {
-    case Nil => true // an empty list is sorted
-    case x :: Nil => true // a single-element list is sorted
-    case x :: xs => ord.lteq(x, xs.head) && isSorted(xs) // if the first two elements are ordered and the rest are sorted, the full list is sorted too
-  }
-
-  /**
-    *
-    * This method is used to test if there is any duplications in the result
-    */
-
-  def isDuplicated[T](list: List[T])(implicit ord: Ordering[T]): Boolean = {
-    list.distinct.size == list.size
-  }
 
   /**
     * This Test is to test Unicode characters can be processed correctly in request and responses.
@@ -62,7 +39,7 @@ class GitHubAPITest extends FunSuite with Matchers {
     */
   test("Test Special characters can be correctly processed and sort by star count ") {
 
-    val request = new GitHubRepositorySearchRequest("%20")
+    val request = new GitHubRepositorySearchRequest(term_special)
     request.addSort("star")
     request.addOrder("desc")
     request.addPerPage(5)
