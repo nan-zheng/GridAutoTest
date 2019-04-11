@@ -28,15 +28,15 @@ trait GitHubRequest {
     if (!isNullOrEmpty(value)) qualifiers += s"$name:$value"
   }
 
-  def addSort(sort: String): Unit = {
+  def setSort(sort: String): Unit = {
     fields += ("sort" -> sort)
   }
 
-  def addOrder(order: String): Unit = {
+  def setOrder(order: String): Unit = {
     fields += ("order" -> order)
   }
 
-  def addPerPage(perPage: Int): Unit = {
+  def setPerPage(perPage: Int): Unit = {
     fields += ("per_page" -> String.valueOf(perPage))
   }
 

@@ -23,7 +23,7 @@ class SimpleHttpClient {
       */
     cred match {
       case Some(c: BasicAuthCred) => request.addHeader("Authorization", "Basic " +
-        Base64.getEncoder.encode((c.username + ':' + c.password).getBytes))
+        new String(Base64.getEncoder.encode((c.username + ':' + c.password).getBytes)))
       case _ => // do nothing
     }
 
