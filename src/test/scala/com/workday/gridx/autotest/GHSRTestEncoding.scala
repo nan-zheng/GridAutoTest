@@ -26,7 +26,7 @@ class GHSRTestEncoding extends FunSuite with Matchers {
   }
 
   /**
-    * This Test is to test Unicode characters can be processed correctly in request and responses.
+    * This Test is to test Special characters can be processed correctly in request and responses.
     *
     */
   test("Test with special characters can be correctly processed in the request and responses") {

@@ -38,7 +38,7 @@ class GHSRParameterTest extends FunSuite with Matchers {
 
 
   /**
-    * Test Sort by forks with asc should work
+    * Test Sort by forks with asc
     */
   test("Sort by forks with asc should work") {
     val request = new GitHubRepositorySearchRequest(termGitHub)
@@ -52,7 +52,7 @@ class GHSRParameterTest extends FunSuite with Matchers {
   }
 
   /**
-    * Sort by forks with desc should work
+    * Sort by forks with desc
     */
   test("Sort by forks with desc should work") {
     val request = new GitHubRepositorySearchRequest(termGitHub)
@@ -66,7 +66,7 @@ class GHSRParameterTest extends FunSuite with Matchers {
   }
 
   /**
-    * Test Sort by stars with asc should work
+    * Sort by stars with asc
     */
   test("Sort by stars with asc should work") {
     val request = new GitHubRepositorySearchRequest(termGitHub)
@@ -80,7 +80,7 @@ class GHSRParameterTest extends FunSuite with Matchers {
   }
 
   /**
-    * Sort by stars with desc should work
+    * Sort by stars with desc
     */
   test("Sort by stars with desc should work") {
     val request = new GitHubRepositorySearchRequest(termGitHub)
@@ -94,7 +94,7 @@ class GHSRParameterTest extends FunSuite with Matchers {
   }
 
   /**
-    * Set 10 pages should only return 10 pages
+    * Set 10 per pages should only return 10 pages
     */
   test("Set 10 pages should only return 10 pages") {
     val request = new GitHubRepositorySearchRequest(termGitHub)

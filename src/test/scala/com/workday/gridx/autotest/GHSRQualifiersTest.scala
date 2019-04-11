@@ -69,7 +69,7 @@ class GHSRQualifiersTest extends FunSuite with Matchers {
   }
 
   /**
-    * Test set fork works with all fork = number repo return
+    * Test set fork works with all fork = number repo returned
     *
     */
   test("Test set fork works with all fork = number repo return") {
