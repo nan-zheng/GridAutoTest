@@ -21,9 +21,9 @@ class GHSRParameterTest extends FunSuite with Matchers {
     * 3. Sort works
     *
     */
-  test("Test key word in scala language and sort by DESC with 5 per page") {
+  test("Test key word in Java language and sort by DESC with 5 per page") {
     val request = new GitHubRepositorySearchRequest(termGitHub)
-    request.setLanguage("scala")
+    request.setLanguage("Java")
     request.setSort("forks")
     request.setOrder("desc")
     request.setPerPage(perPage5)
@@ -102,5 +102,39 @@ class GHSRParameterTest extends FunSuite with Matchers {
     val res = GitHubHttpClient.getInstance.get[RepositorySearchResult](request.buildRequest)
 
     res.items.size should be(perPage10)
+  }
+
+  /**
+    * Test key word in Java language with fork >=500 and sort by DESC with 100 per page
+    */
+  test("Test key word in Java language with fork >=500 and sort by DESC with 100 per page") {
+    val request = new GitHubRepositorySearchRequest(termGitHub)
+    request.setLanguage("Java")
+    request.setForks(">=500")
+    request.setSort("forks")
+    request.setOrder("desc")
+    request.setPerPage(100)
+
+    val res = GitHubHttpClient.getInstance.get[RepositorySearchResult](request.buildRequest)
+
+    TestUtil.isSorted(res.items.map(_.forks_count).reverse) should be(true)
+    res.items.foreach(_.description.toLowerCase().contains(termGitHub) should be(true))
+  }
+  /**
+    * Test key word in Java language and fork in range
+    */
+  test("Test key word in Java language and fork in range") {
+    val request = new GitHubRepositorySearchRequest(termGitHub)
+    request.setLanguage("Java")
+    request.setForks("10 30")
+    request.setSort("forks")
+    request.setOrder("desc")
+    request.setPerPage(100)
+
+    val res = GitHubHttpClient.getInstance.get[RepositorySearchResult](request.buildRequest)
+
+    res.items.foreach( x => x.forks_count >=10 && x.forks_count <= 30 should be(true))
+    TestUtil.isSorted(res.items.map(_.forks_count).reverse) should be(true)
+    res.items.foreach(_.description.toLowerCase().contains(termGitHub) should be(true))
   }
 }

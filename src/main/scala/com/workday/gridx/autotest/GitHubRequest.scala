@@ -17,7 +17,7 @@ trait GitHubRequest {
     val termAndQualifiers = if (isNullOrEmpty(getTerm())) {
       mergedQualifiers }
      else {
-      if (isNullOrEmpty(mergedQualifiers)) getTerm() else getTerm + "+" + mergedQualifiers
+      if (isNullOrEmpty(mergedQualifiers)) getTerm() else getTerm + " " + mergedQualifiers
     }
     request.addParameter("q", termAndQualifiers)
     fields.foreach(f => request.addParameter(f._1, f._2))
