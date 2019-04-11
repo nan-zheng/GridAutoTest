@@ -13,7 +13,7 @@ trait GitHubRequest {
 
   def buildRequest(): String = {
     val request = RequestBuilder.get().setUri(s"https://api.github.com/$getAPIUri")
-    val mergedQualifiers = qualifiers.mkString("+")
+    val mergedQualifiers = qualifiers.mkString(" ")
     val termAndQualifiers = if (isNullOrEmpty(getTerm())) {
       mergedQualifiers }
      else {
