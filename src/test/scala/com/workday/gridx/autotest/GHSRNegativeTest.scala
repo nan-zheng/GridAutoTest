@@ -6,19 +6,16 @@ import org.scalatest.{FunSuite, Matchers}
 import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
 
-import scala.util.{Try, control}
 
 
 @RunWith(classOf[JUnitRunner])
-class GHSRNagativeTest extends FunSuite with Matchers {
+class GHSRNegativeTest extends FunSuite with Matchers {
 
   /**
     * This Test is to test when the given parameter is missing, an exception is thrown.
     *
     */
   test("Test with empty parameters ") {
-    // val totalPage: Int = 5
-
     val request = new GitHubRepositorySearchRequest("")
 
     try {
@@ -116,9 +113,9 @@ class GHSRNagativeTest extends FunSuite with Matchers {
 
 
   /**
-    * Bad parameters being built with q
+    * Invalid q parameters being built
     */
-  test("Bad Url should return error") {
+  test("Invalid q parameters being built") {
     val request = GitHubHttpClient.getInstance.getString("https://api.github.com/search/repositories?p=234")
     request.contains("Validation Failed") should be(true)
   }
